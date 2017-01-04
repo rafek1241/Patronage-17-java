@@ -38,14 +38,21 @@ public class UserDao {
     }
 
     public boolean rentMovie(int userId, HashSet<Integer> moviesId) {
-        int counter = moviesId.size();
-        int discount = 0, freemovie = 0;
-        double total = 0;
-        int discountvalue = 25;//discount % if 2 movies of first category
-        Iterator<Integer> iter = moviesId.iterator();
+        if (listUsers.get(userId) == null)
+            return false;
+        int counter = moviesId.size(), counterUserMovs = listUsers.get(userId).getRentedMovies().size();
         if (counter == 0) {
             return false;
         }
+        if ((counter + counterUserMovs) > 10)
+            return false;
+
+        int discount = 0, freemovie = 0;
+        double total = 0;
+        double discountvalue = 1 - (25 / 100);//discount % if 2 movies of first category
+        Iterator<Integer> iter = moviesId.iterator();
+
+
         while (iter.hasNext()) {
             int id = iter.next();
             Movie mov = movDao.getMovieById(id);
@@ -66,8 +73,33 @@ public class UserDao {
         if (freemovie == 1)
             total = total - catDao.getCategoryById(3).getPrice();
         if (discount >= 2)
-            total = total * 0.75;
+            total = total * discountvalue;
+
+        //Round to 0.00
+        //         --^
+        total = (double) Math.round(total * 100.0) / 100.0;
         listUsers.get(userId).setBalance(listUsers.get(userId).getBalance() + total);
+        return true;
+    }
+
+    public boolean returnMovie(int userId, HashSet<Integer> moviesId) {
+        Iterator<Integer> it = moviesId.iterator();
+        while (it.hasNext()) {
+            Movie mov = movDao.getMovieById(it.next());
+            if (mov == null)
+                return false;
+            mov.setRented(false);
+            listUsers.get(userId).returnMovie(mov);
+        }
+
+        return true;
+    }
+
+    public boolean pay(int id, double payment) {
+        if (payment > listUsers.get(id).getBalance()) {
+            return false;
+        } else
+            listUsers.get(id).setBalance(listUsers.get(id).getBalance() - payment);
         return true;
     }
 }

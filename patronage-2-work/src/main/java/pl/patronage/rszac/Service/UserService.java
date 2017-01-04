@@ -30,4 +30,12 @@ public class UserService {
     public boolean rentMovie(int userId, HashSet<Integer> movieId) {
         return this.userDao.rentMovie(userId, movieId);
     }
+
+    public boolean returnMovie(int userId, HashSet<Integer> moviesId) {
+        return this.userDao.returnMovie(userId, moviesId);
+    }
+
+    public boolean pay(int id, double payment) {
+    return this.userDao.pay(id,payment);
+    }
 }
