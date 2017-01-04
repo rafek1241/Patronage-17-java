@@ -49,7 +49,7 @@ public class UserDao {
 
         int discount = 0, freemovie = 0;
         double total = 0;
-        double discountvalue = 1 - (25 / 100);//discount % if 2 movies of first category
+        double discountvalue = 0.75;//discount % if 2 movies of first category
         Iterator<Integer> iter = moviesId.iterator();
 
 
@@ -84,14 +84,19 @@ public class UserDao {
 
     public boolean returnMovie(int userId, HashSet<Integer> moviesId) {
         Iterator<Integer> it = moviesId.iterator();
+        Set<Movie> movs = listUsers.get(userId).getRentedMovies();
         while (it.hasNext()) {
             Movie mov = movDao.getMovieById(it.next());
             if (mov == null)
                 return false;
+            if (movs.contains(mov)) {
+                movs.remove(mov);
+            } else
+                return false;
             mov.setRented(false);
-            listUsers.get(userId).returnMovie(mov);
         }
 
+        listUsers.get(userId).setRentedMovies(movs);
         return true;
     }
 

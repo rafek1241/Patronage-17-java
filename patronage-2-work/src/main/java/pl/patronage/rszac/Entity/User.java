@@ -17,12 +17,29 @@ public class User {
 
         User user = (User) o;
 
+        if (id != user.id) return false;
+        if (Double.compare(user.balance, balance) != 0) return false;
         if (login != null ? !login.equals(user.login) : user.login != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
         if (name != null ? !name.equals(user.name) : user.name != null) return false;
-        return surname != null ? surname.equals(user.surname) : user.surname == null;
+        if (surname != null ? !surname.equals(user.surname) : user.surname != null) return false;
+        return rentedMovies != null ? rentedMovies.equals(user.rentedMovies) : user.rentedMovies == null;
     }
 
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = id;
+        result = 31 * result + login.hashCode();
+        result = 31 * result + password.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + surname.hashCode();
+        result = 31 * result + rentedMovies.hashCode();
+        temp = Double.doubleToLongBits(balance);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
 
     public User(int id, String login, String password, String name, String surname, Set<Movie> rentedMovies) {
         this.id = id;
@@ -70,10 +87,6 @@ public class User {
 
     public void rentMovie(Movie mov) {
         this.rentedMovies.add(mov);
-    }
-
-    public void returnMovie(Movie mov) {
-        this.rentedMovies.remove(mov);
     }
 
     public void setRentedMovies(Set<Movie> rentedMovies) {
