@@ -3,12 +3,7 @@
 
 ## Introduction
 
-This is an application for rent movies. We can manipulate objects in following way:
-
-* Display any objects (1 or all)
-* Add objects to list (1 or all)
-* Remove object from list (1)
-* Update any objects existing in list
+This is an application for rent movies. We can make a list of movies and create users which will be rent this movies.
 
 ## Structure of project
 ```
