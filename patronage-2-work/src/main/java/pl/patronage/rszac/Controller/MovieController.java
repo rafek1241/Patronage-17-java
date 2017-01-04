@@ -21,6 +21,17 @@ public class MovieController {
 
     }
 
+    @RequestMapping(value = "/available", method = RequestMethod.GET)
+    public Collection<Movie> getAllMoviesAvailable() {
+        return movieService.getAllMoviesAvailable();
+
+    }
+
+    @RequestMapping(value = "/price/{id}", method = RequestMethod.GET)
+    public Collection<Movie> getMoviesByPriceCategory(@PathVariable("id") int id) {
+        return this.movieService.getMoviesByPriceCategory(id);
+    }
+
     @RequestMapping(value = "/{idM}/addActor/{idA}", method = RequestMethod.GET)
     public void setActorToMovieById(@PathVariable("idA") int IdAct, @PathVariable("idM") int IdMovie) {
         this.movieService.setActorToMovieById(IdAct, IdMovie);

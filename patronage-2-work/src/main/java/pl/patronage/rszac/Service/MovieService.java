@@ -46,4 +46,12 @@ public class MovieService {
     public void insertActorsToMovie(LinkedHashSet<Actor> list, int idMov) {
         this.movieDao.insertActorsToMovie(list, idMov);
     }
+
+    public Collection<Movie> getMoviesByPriceCategory(int id) {
+        return this.movieDao.getMovieByPriceCatId(id);
+    }
+
+    public Collection<Movie> getAllMoviesAvailable() {
+        return this.movieDao.getAllMoviesAvailable();
+    }
 }

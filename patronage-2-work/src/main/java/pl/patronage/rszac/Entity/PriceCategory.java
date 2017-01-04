@@ -1,24 +1,27 @@
 package pl.patronage.rszac.Entity;
 
 
-public class Actor {
+public class PriceCategory {
     private int id;
     private String name;
-    private String surname;
+    private int price;
 
-
-    public Actor(int id, String name, String surname) {
+    public PriceCategory(int id, String name, int price) {
         this.id = id;
         this.name = name;
-        this.surname = surname;
+        this.price = price;
     }
 
     //Define non arg constructor otherwise error 400:Bad request to POST and PUT actions
-    public Actor() {
+    public PriceCategory() {
     }
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -29,11 +32,11 @@ public class Actor {
         this.name = name;
     }
 
-    public String getSurname() {
-        return surname;
+    public int getPrice() {
+        return price;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

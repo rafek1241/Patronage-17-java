@@ -17,6 +17,8 @@ public class MovieDaoTest {
     MovieDao movies;
     @Autowired
     ActorDao actors;
+    @Autowired
+    PriceCatDao priceCategory;
     Movie a, b, c;
     Actor a1, a2, a3;
 
@@ -25,15 +27,16 @@ public class MovieDaoTest {
         //ta metoda będzie wywołana przed każdym testem
         movies = new MovieDao();
         actors = new ActorDao();
+        priceCategory = new PriceCatDao();
         Set<Actor> list = new LinkedHashSet<>();
         a1 = new Actor(1, "Jan", "Kowalski");
         a2 = new Actor(2, "Barbara", "Kowalska");
         a3 = new Actor(3, "Konstanty", "Galczynski");
         list.add(a1);
         list.add(a2);
-        a = new Movie(1, "Movie A");
-        b = new Movie(2, "Movie B");
-        c = new Movie(3, "Movie C", list);
+        a = new Movie(1, "Movie A", priceCategory.getCategoryById(1));
+        b = new Movie(2, "Movie B", priceCategory.getCategoryById(2));
+        c = new Movie(3, "Movie C", priceCategory.getCategoryById(3), list);
     }
 
 

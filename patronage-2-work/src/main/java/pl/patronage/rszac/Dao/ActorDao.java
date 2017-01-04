@@ -11,6 +11,17 @@ import java.util.Map;
 public class ActorDao {
     private static Map<Integer, Actor> actors = new HashMap<>();
 
+    static {
+        actors = new HashMap<Integer, Actor>() {
+
+
+            {
+                put(1, new Actor(1, "Karczek", "Kowalski"));
+            }
+        };
+    }
+
+
     public Collection<Actor> getAllActors() {
         return actors.values();
     }
