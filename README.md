@@ -1,6 +1,6 @@
 # Patronage-17-java
 ### Second task
-# Patronage-16-Java
+
 ## Introduction
 
 This is an application for rent movies. We can manipulate objects in following way:
