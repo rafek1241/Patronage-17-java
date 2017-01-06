@@ -55,12 +55,11 @@ public class ActorDaoTest {
 
     @Test
     public void removeActorById() throws Exception {
-
+        actors.getAllActors().clear();
         Actor test = new Actor(1, "ActorName A", "ActorSurname A");
         Actor test2 = new Actor(2, "ActorName B", "ActorSurname B");
         actors.insertActor(test);
         actors.insertActor(test2);
-
         Assert.assertEquals(2, actors.getAllActors().size());
         actors.removeActorById(test.getId());
         Assert.assertNotEquals(2, actors.getAllActors().size());

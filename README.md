@@ -300,7 +300,6 @@ This is an application for rent movies. We can make a list of movies and create 
 </n>
 
 ## Todo:
-**TODO (old)**
 - [x] Display any objects (1 or all)
 - [x] Add objects to list (1 or all)
 - [x] Remove object from list (1)
@@ -322,4 +321,4 @@ This is an application for rent movies. We can make a list of movies and create 
 - [x] Get list of movies rented by user.
 
 - [x] Define 10 movies in each category at the start.
-- [ ] Don't forget about unit tests!
+- [x] Don't forget about unit tests!
