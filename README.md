@@ -23,7 +23,7 @@ This is an application for rent movies. We can make a list of movies and create 
 
 2) Web Services Framework: Spring Boot Starter
 
-3) Testing: JUnit & Travis [![Build Status](https://travis-ci.org/rafek1241/Patronage-16-Java.svg?branch=Workflow-Rszac)](https://travis-ci.org/rafek1241/Patronage-16-Java)
+3) Testing: JUnit & Travis [![Build Status](https://travis-ci.org/rafek1241/Patronage-17-java.svg?branch=Workflow)](https://travis-ci.org/rafek1241/Patronage-17-java)
 
 ##Steps to run:
 
@@ -321,4 +321,4 @@ This is an application for rent movies. We can make a list of movies and create 
 - [x] Get list of movies rented by user.
 
 - [x] Define 10 movies in each category at the start.
-- [x] Don't forget about unit tests!
+- [x] Don't forget about unit tests! 
