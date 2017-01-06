@@ -135,4 +135,22 @@ public class MovieDaoTest {
         movies.insertActorsToMovie(list, b.getId());
     }
 
+    @Test
+    public void getMovieByPriceCatId() throws Exception {
+        Assert.assertNull(movies.getMovieByPriceCatId(4));
+        Assert.assertNotNull(movies.getMovieByPriceCatId(3));
+        Assert.assertNotNull(movies.getMovieByPriceCatId(1));
+    }
+
+    @Test
+    public void getAllMoviesAvailable() throws Exception {
+
+        Assert.assertNotNull(movies.getAllMoviesAvailable());
+        Iterator<Movie> it = movies.getAllMoviesAvailable().iterator();
+        while (it.hasNext()) {
+            Movie mov = it.next();
+            mov.setRented(true);
+        }
+        Assert.assertTrue(movies.getAllMoviesAvailable().isEmpty());
+    }
 }

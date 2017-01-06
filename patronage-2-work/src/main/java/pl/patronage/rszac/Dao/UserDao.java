@@ -11,9 +11,9 @@ import java.util.*;
 public class UserDao {
     private static Map<Integer, User> listUsers = new HashMap<>();
     @Autowired
-    MovieDao movDao;
+    MovieDao movDao = new MovieDao();
     @Autowired
-    PriceCatDao catDao;
+    PriceCatDao catDao = new PriceCatDao();
 
 
     public Collection<User> getAllUsers() {
@@ -59,18 +59,24 @@ public class UserDao {
             if (mov == null || mov.isRented()) {
                 return false;
             }
+        }
+
+        iter = moviesId.iterator();
+
+
+        while (iter.hasNext()) {
+            int id = iter.next();
+            Movie mov = movDao.getMovieById(id);
             if (mov.getCategory().getId() == 1)
                 discount++;
-            if (counter >= 4) {
-                if (mov.getCategory().getId() == 3) {
-                    freemovie = 1;
-                }
+            if (mov.getCategory().getId() == 3) {
+                freemovie = 1;
             }
             mov.setRented(true);
             listUsers.get(userId).rentMovie(mov);
             total = total + mov.getCategory().getPrice();
         }
-        if (freemovie == 1)
+        if (freemovie == 1 && counter >= 4)
             total = total - catDao.getCategoryById(3).getPrice();
         if (discount >= 2)
             total = total * discountvalue;
@@ -84,6 +90,8 @@ public class UserDao {
 
     public boolean returnMovie(int userId, HashSet<Integer> moviesId) {
         Iterator<Integer> it = moviesId.iterator();
+        if (!listUsers.containsKey(userId))
+            return false;
         Set<Movie> movs = listUsers.get(userId).getRentedMovies();
         while (it.hasNext()) {
             Movie mov = movDao.getMovieById(it.next());
