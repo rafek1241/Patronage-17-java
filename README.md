@@ -299,26 +299,3 @@ This is an application for rent movies. We can make a list of movies and create 
 
 </n>
 
-## Todo:
-- [x] Display any objects (1 or all)
-- [x] Add objects to list (1 or all)
-- [x] Remove object from list (1)
-- [x] Update any objects existing in list
-
-- [x] Move previous project on repositorium
-- [x] Make 3 price categories of movies - "Nowości, hity, pozostałe"
-- [x] Rent 2 movies in the same time will give 25% discount.
-- [x] If rent 3 movies the same time - 1 from category "Pozostale" is for free
-- [x] User can have max 10 movies in the same time.
-- [x] REST action in JSON format.
-- [x] Data directly in application Code.
-
-- [x] Find movie by price category
-- [x] Find movie available (not rented)
-- [x] Create user of Movie rent.
-- [x] Rent movie by user.
-- [x] Return movie by user.
-- [x] Get list of movies rented by user.
-
-- [x] Define 10 movies in each category at the start.
-- [x] Don't forget about unit tests! 
