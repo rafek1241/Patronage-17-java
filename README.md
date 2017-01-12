@@ -38,264 +38,96 @@ This is an application for rent movies. We can make a list of movies and create 
 ##Requests
 
 ###Actors
-```diff
-> GET
-```
->**`/actors`** - return list of actors
->
-> Response fields:
->- id
->- name 
->- surname
 
-</n> 
+####GET
+`curl http://localhost:8080/actors`
 
->**`/actors/{id}`** - return/find actor by id
->
-> Response fields:
->- id
->- name 
->- surname
+>Get list of actors
 
-</n> 
+`curl http://localhost:8080/actors/1`
 
-```diff
-> POST
-```
->**`/actors`** - add new actor or actors
->
->	Header: `Content-Type:application/json`
->
->  Fields:
->- id
->- name 
->- surname
->
-> Response fields
->- id
->- name
->- surname
+>Get actor with id `1`
 
-</n> 
+####POST
+`curl -H "Content-Type: application/json" -X POST -d '{"id":"1","name":"xyz","surname":"xyz"}' http://localhost:8080/actors`
 
-```diff
-> DELETE
-```
->**`/actors/{id}`** - delete actor by id
+>Insert actor with id `"id":"1"`
 
-</n> 
+####PUT
+`curl -H "Content-Type: application/json" -X PUT -d '{"id":"1","name":"xyz","surname":"xyz"}' http://localhost:8080/actors`
 
-```diff
-> PUT
-```
->**`/actors/{id}`** - update actor by id
->
->	Header: `Content-Type:application/json`
->
->  Fields:
->- name 
->- surname
->
+>Update actor with id `"id":"1"`
 
-</n> 
+####DELETE
+`curl -v -X DELETE http://localhost:8080/actors/1`
+
+>Delete actor with id `1`
 
 ###Movies
-```diff
-> GET
-```
->**`/movies`** - return list of movies
->
-> Response fields:
->- id
->- name 
->- actors
->- category (price category)
->- rented
 
-</n>  
+####GET
+`curl http://localhost:8080/movies`
 
->**`/movies/available`** - return list of movies which isn't rented
->
-> Response fields:
->- id
->- name 
->- actors
->- category (price category)
->- rented
+>Get list of movies
 
-</n>  
+`curl http://localhost:8080/movies/1`
 
->**`/movies/{id}`** - return/find movie by id
->
-> Response fields:
->- id
->- name
->- actors
->- category (price category)
->- rented
+>Get movie with id `1`
 
-</n> 
+`curl http://localhost:8080/movies/1/addActor/2`
 
->**`/movies/price/{id}`** - return/find movie by category price id
->
-> Response fields:
->- id
->- name
->- actors
->- category (price category)
->- rented
+>Insert to movie with id `1` actor with id `2`
 
-</n> 
+`curl http://localhost:8080/movies/price/1`
 
->**`/movies/{id}/addActor/{idA}`** - add actor with idA to movie with id
+>Get list of movies in price category `1` `(1 - "Nowości", 2 - "Hity", 3 - "Pozostale")`
 
-</n> 
+`curl http://localhost:8080/movies/available`
 
-```diff
-> POST
-```
->**`/movies`** - add new movie
->
->	Header: `Content-Type:application/json`
->
->  Fields:
->- id
->- name
->- actors
->
-> Response fields
->- id
->- name
->- actors
+>Get list of movies that aren't rented
 
-</n> 
+####POST
+`curl -H "Content-Type: application/json" -X POST -d '[{"id":"1","name":"xyz","surname":"xyz"}]' http://localhost:8080/movies/1/addActors`
 
+>Insert Actors to movie with id `1`
 
->**`/movies/addActors`** - add list of actors to the movie
->
->	Header: `Content-Type:application/json`
->
->  Fields:
->- list of actors
->- id of movie
+`curl -H "Content-Type: application/json" -X POST -d '{"id":"111","name":"xyz","category":"2",[{"id":"1","name":"xyz","surname":"xyz"}]}' http://localhost:8080/movies`
+>Insert movie with id `"id":"111"`
+####PUT
+`curl -H "Content-Type: application/json" -X POST -d '{"id":"5","name":"xyz","category":"2",[{"id":"1","name":"xyz","surname":"xyz"}]}' http://localhost:8080/movies`
 
-</n>
+>Update movie with id `"id":"5"`
 
-```diff
-> DELETE
-```
->**`/movies/{id}`** - delete movie by id
+####DELETE
+`curl -v -X DELETE http://localhost:8080/movies/1`
 
-</n> 
-
->**`/movies/{id}/remActor/{idA}`** - remove actor with idA from movie with id
-
-</n>
-
-```diff
-> PUT
-```
->**`/movies/{id}`** - update movie by id
->
->	Header: `Content-Type:application/json`
->
->  Fields:
->- name
->- actors
-
-</n> 
+>Delete movie with id `1`
 
 ###Users
-```diff
-> GET
-```
->**`/users`** - get user list
->
-> Response fields
->- id
->- name
->- surname
->- login
->- password
->- rentedMovies
->- balance (how much you owe to the store)
 
-</n>
+####GET
+`curl http://localhost:8080/users`
 
->**`/users/{id}/rent`** - get list of rented movies
->
->  Fields:
->- id
->
-> Response fields
->- id
->- name
->- actors
->- category (price category)
->- rented
+>Get list of users
 
-</n>
+`curl http://localhost:8080/users/1/rent`
 
-```diff
-> POST
-```
->**`/users`** - add new user
->
->	Header: `Content-Type:application/json`
->
->  Fields:
->- id
->- name
->- surname
->- login
->- password
->- rentedMovies
->- balance 
->
-> Response fields
->- id
->- name
->- surname
->- login
->- password
->- rentedMovies
->- balance (how much you owe to the store)
+>Get list of rented movies from user with id `1`
 
-</n>
+####POST
+`curl -H "Content-Type: application/json" -X POST -d '{"id": 1,"login": "test1","password": "test2","name": "test3","surname": "test4","rentedMovies": []}' http://localhost:8080/users/`
+>Create user
 
->**`/users/{id}/rent`** - Rent movie by user
->
->	Header: `Content-Type:application/json`
->
->  Fields:
->- id
->- moviesId
->
-> Response fields
->- true/false
+`curl -H "Content-Type: application/json" -X POST -d '[1,2,3]' http://localhost:8080/users/1/rent`
+>Rent movie
 
-</n>
+`curl -H "Content-Type: application/json" -X POST -d '50.05' http://localhost:8080/users/1/pay`
+>Pay user
 
+####DELETE
+`curl -H "Content-Type: application/json" -X DELETE -d '[1,2,3]' http://localhost:8080/users/1/rent`
 
->**`/users/{id}/pay`** - Pay off the user's balance
->
->	Header: `Content-Type:application/json`
->
->  Fields:
->- id
->- moviesId
->
-> Response fields
->- true/false
-
-</n>
-
-```diff
-> DELETE
-```
->**`/users/{id}/rent`** - return movie
-
-</n> 
+>Return movie
 
 </n>
 
