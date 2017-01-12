@@ -1,10 +1,10 @@
-package pl.patronage.rszac.Service;
+package pl.patronage.rszac.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.patronage.rszac.Dao.MovieDao;
-import pl.patronage.rszac.Entity.Actor;
-import pl.patronage.rszac.Entity.Movie;
+import pl.patronage.rszac.dao.MovieDao;
+import pl.patronage.rszac.entity.Actor;
+import pl.patronage.rszac.entity.Movie;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;

@@ -1,15 +1,17 @@
-package pl.patronage.rszac.Entity;
+package pl.patronage.rszac.entity;
 
+
+import java.math.BigDecimal;
 
 public class PriceCategory {
     private int id;
     private String name;
-    private int price;
+    private BigDecimal price;
 
     public PriceCategory(int id, String name, int price) {
         this.id = id;
         this.name = name;
-        this.price = price;
+        this.price = BigDecimal.valueOf(price);
     }
 
     //Define non arg constructor otherwise error 400:Bad request to POST and PUT actions
@@ -32,11 +34,11 @@ public class PriceCategory {
         this.name = name;
     }
 
-    public int getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 }

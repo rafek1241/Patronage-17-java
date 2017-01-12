@@ -1,10 +1,10 @@
-package pl.patronage.rszac.Controller;
+package pl.patronage.rszac.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pl.patronage.rszac.Entity.Actor;
-import pl.patronage.rszac.Entity.Movie;
-import pl.patronage.rszac.Service.MovieService;
+import pl.patronage.rszac.entity.Actor;
+import pl.patronage.rszac.entity.Movie;
+import pl.patronage.rszac.service.MovieService;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;

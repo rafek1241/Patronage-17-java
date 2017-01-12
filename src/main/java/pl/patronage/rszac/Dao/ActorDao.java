@@ -1,7 +1,7 @@
-package pl.patronage.rszac.Dao;
+package pl.patronage.rszac.dao;
 
 import org.springframework.stereotype.Repository;
-import pl.patronage.rszac.Entity.Actor;
+import pl.patronage.rszac.entity.Actor;
 
 import java.util.Collection;
 import java.util.HashMap;

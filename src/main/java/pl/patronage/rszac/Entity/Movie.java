@@ -1,4 +1,4 @@
-package pl.patronage.rszac.Entity;
+package pl.patronage.rszac.entity;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -11,16 +11,31 @@ public class Movie {
     private PriceCategory category;
     private boolean rented = false;
 
+    //Define non arg constructor otherwise error 400:Bad request to POST and PUT actions
+    public Movie() {
+    }
+
+    public Movie(int id, String name, PriceCategory CatId, Set<Actor> list) {
+        this.id = id;
+        this.name = name;
+
+        this.actors = list;
+        this.category = CatId;
+    }
+
+    public Movie(int id, String name, PriceCategory CatId) {
+        this.id = id;
+        this.name = name;
+        this.category = CatId;
+        this.actors = new LinkedHashSet<>();
+    }
+
     public PriceCategory getCategory() {
         return category;
     }
 
     public void setCategory(PriceCategory category) {
         this.category = category;
-    }
-
-    //Define non arg constructor otherwise error 400:Bad request to POST and PUT actions
-    public Movie() {
     }
 
     @Override
@@ -47,27 +62,12 @@ public class Movie {
         return result;
     }
 
-    public Movie(int id, String name, PriceCategory CatId, Set<Actor> list) {
-        this.id = id;
-        this.name = name;
-
-        this.actors = list;
-        this.category = CatId;
-    }
-
-    public Movie(int id, String name, PriceCategory CatId) {
-        this.id = id;
-        this.name = name;
-        this.category = CatId;
-        this.actors = new LinkedHashSet<>();
+    public Set<Actor> getActors() {
+        return actors;
     }
 
     public void setActors(Set<Actor> list) {
         this.actors = list;
-    }
-
-    public Set<Actor> getActors() {
-        return actors;
     }
 
     public int getId() {

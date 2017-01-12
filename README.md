@@ -14,7 +14,7 @@ This is an application for rent movies. We can make a list of movies and create 
 	*	/pl.patronage.rszac/Entity
 	*	/pl.patronage.rszac/Service
 	*/src/test/java
-	*	/pl.patronage.rszac.Dao
+	*	/pl.patronage.rszac.dao
 ```
 
 ##Technologies used:

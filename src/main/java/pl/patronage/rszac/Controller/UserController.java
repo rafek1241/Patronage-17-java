@@ -1,11 +1,11 @@
-package pl.patronage.rszac.Controller;
+package pl.patronage.rszac.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import pl.patronage.rszac.Entity.Movie;
-import pl.patronage.rszac.Entity.User;
-import pl.patronage.rszac.Service.UserService;
+import pl.patronage.rszac.entity.Movie;
+import pl.patronage.rszac.entity.User;
+import pl.patronage.rszac.service.UserService;
 
 import java.util.Collection;
 import java.util.HashSet;

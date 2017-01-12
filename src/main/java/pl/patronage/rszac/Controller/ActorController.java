@@ -1,9 +1,9 @@
-package pl.patronage.rszac.Controller;
+package pl.patronage.rszac.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pl.patronage.rszac.Entity.Actor;
-import pl.patronage.rszac.Service.ActorService;
+import pl.patronage.rszac.entity.Actor;
+import pl.patronage.rszac.service.ActorService;
 
 import java.util.Collection;
 

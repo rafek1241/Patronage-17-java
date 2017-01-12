@@ -1,9 +1,9 @@
-package pl.patronage.rszac.Service;
+package pl.patronage.rszac.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.patronage.rszac.Dao.ActorDao;
-import pl.patronage.rszac.Entity.Actor;
+import pl.patronage.rszac.dao.ActorDao;
+import pl.patronage.rszac.entity.Actor;
 
 import java.util.Collection;
 

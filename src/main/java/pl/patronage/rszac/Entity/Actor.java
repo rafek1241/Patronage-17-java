@@ -1,4 +1,4 @@
-package pl.patronage.rszac.Entity;
+package pl.patronage.rszac.entity;
 
 
 public class Actor {

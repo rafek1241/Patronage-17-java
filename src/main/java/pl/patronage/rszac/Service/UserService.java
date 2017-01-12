@@ -1,10 +1,10 @@
-package pl.patronage.rszac.Service;
+package pl.patronage.rszac.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.patronage.rszac.Dao.UserDao;
-import pl.patronage.rszac.Entity.Movie;
-import pl.patronage.rszac.Entity.User;
+import pl.patronage.rszac.dao.UserDao;
+import pl.patronage.rszac.entity.Movie;
+import pl.patronage.rszac.entity.User;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -36,6 +36,6 @@ public class UserService {
     }
 
     public boolean pay(int id, double payment) {
-    return this.userDao.pay(id,payment);
+        return this.userDao.pay(id, payment);
     }
 }

@@ -1,24 +1,24 @@
-package pl.patronage.rszac.Dao;
+package pl.patronage.rszac.dao;
 
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import pl.patronage.rszac.Entity.Actor;
+import pl.patronage.rszac.entity.Actor;
 
 import java.util.Iterator;
 
 public class ActorDaoTest {
 
     @Autowired
-    ActorDao actors = new ActorDao();
+    ActorDao actorDao = new ActorDao();
 
     @After
     public void tearDown() throws Exception {
         //ta metoda będzie wywołana po każdym teście
-        //ISSUE: error with that my actors list are filled with id:2 actor. ALWAYS!! :/
-        if (actors.getAllActors().size() != 0) {
-            Iterator<Actor> it = actors.getAllActors().iterator();
+        //ISSUE: error with that my actorDao list are filled with id:2 actor. ALWAYS!! :/
+        if (actorDao.getAllActors().size() != 0) {
+            Iterator<Actor> it = actorDao.getAllActors().iterator();
             while (it.hasNext()) {
                 Actor akt = it.next();
                 it.remove();
@@ -29,14 +29,14 @@ public class ActorDaoTest {
 
     @Test
     public void getAllActors() throws Exception {
-        actors = new ActorDao();
+        actorDao = new ActorDao();
         Actor test = new Actor(1, "ActorName A", "ActorSurname A");
         Actor test2 = new Actor(2, "ActorName B", "ActorSurname B");
-        Assert.assertTrue(actors.getAllActors().isEmpty());
-        actors.insertActor(test);
-        Assert.assertEquals(1, actors.getAllActors().size());
-        actors.insertActor(test2);
-        Assert.assertEquals(2, actors.getAllActors().size());
+        Assert.assertTrue(actorDao.getAllActors().isEmpty());
+        actorDao.insertActor(test);
+        Assert.assertEquals(1, actorDao.getAllActors().size());
+        actorDao.insertActor(test2);
+        Assert.assertEquals(2, actorDao.getAllActors().size());
 
     }
 
@@ -44,49 +44,49 @@ public class ActorDaoTest {
     public void getActorById() throws Exception {
         Actor test = new Actor(1, "ActorName A", "ActorSurname A");
         Actor test2 = new Actor(2, "ActorName B", "ActorSurname B");
-        actors.insertActor(test);
-        actors.insertActor(test2);
-        Assert.assertEquals(2, actors.getAllActors().size());
-        Assert.assertEquals(actors.getActorById(test.getId()), test);
-        Assert.assertEquals(actors.getActorById(test2.getId()), test2);
-        actors.removeActorById(test.getId());
-        Assert.assertNull(actors.getActorById(test.getId()));
+        actorDao.insertActor(test);
+        actorDao.insertActor(test2);
+        Assert.assertEquals(2, actorDao.getAllActors().size());
+        Assert.assertEquals(actorDao.getActorById(test.getId()), test);
+        Assert.assertEquals(actorDao.getActorById(test2.getId()), test2);
+        actorDao.removeActorById(test.getId());
+        Assert.assertNull(actorDao.getActorById(test.getId()));
     }
 
     @Test
     public void removeActorById() throws Exception {
-        actors.getAllActors().clear();
+        actorDao.getAllActors().clear();
         Actor test = new Actor(1, "ActorName A", "ActorSurname A");
         Actor test2 = new Actor(2, "ActorName B", "ActorSurname B");
-        actors.insertActor(test);
-        actors.insertActor(test2);
-        Assert.assertEquals(2, actors.getAllActors().size());
-        actors.removeActorById(test.getId());
-        Assert.assertNotEquals(2, actors.getAllActors().size());
-        Assert.assertNull(actors.getActorById(test.getId()));
+        actorDao.insertActor(test);
+        actorDao.insertActor(test2);
+        Assert.assertEquals(2, actorDao.getAllActors().size());
+        actorDao.removeActorById(test.getId());
+        Assert.assertNotEquals(2, actorDao.getAllActors().size());
+        Assert.assertNull(actorDao.getActorById(test.getId()));
     }
 
     @Test
     public void updateActor() throws Exception {
         Actor test = new Actor(5, "ActorName A", "ActorSurname A");
         Actor test2 = new Actor(5, "ActorName B", "ActorSurname B");
-        actors.insertActor(test);
+        actorDao.insertActor(test);
         Assert.assertEquals(5, test.getId());
-        Assert.assertEquals(actors.getActorById(test.getId()), test);
-        actors.updateActor(test2);
-        Assert.assertNotEquals(actors.getActorById(test.getId()).getName(), new Actor(5, "ActorName A", "ActorSurname A").getName());
-        Assert.assertEquals(actors.getActorById(test.getId()), test);
+        Assert.assertEquals(actorDao.getActorById(test.getId()), test);
+        actorDao.updateActor(test2);
+        Assert.assertNotEquals(actorDao.getActorById(test.getId()).getName(), new Actor(5, "ActorName A", "ActorSurname A").getName());
+        Assert.assertEquals(actorDao.getActorById(test.getId()), test);
     }
 
     @Test
     public void insertActor() throws Exception {
         Actor test = new Actor(5, "ActorName A", "ActorSurname A");
-        actors.insertActor(test);
-        Assert.assertEquals(actors.getActorById(test.getId()), test);
-        Assert.assertEquals(1, actors.getAllActors().size());
-        actors.insertActor(test);
-        Assert.assertEquals(actors.getActorById(test.getId()), test);
-        Assert.assertEquals(1, actors.getAllActors().size());
+        actorDao.insertActor(test);
+        Assert.assertEquals(actorDao.getActorById(test.getId()), test);
+        Assert.assertEquals(1, actorDao.getAllActors().size());
+        actorDao.insertActor(test);
+        Assert.assertEquals(actorDao.getActorById(test.getId()), test);
+        Assert.assertEquals(1, actorDao.getAllActors().size());
 
     }
 
