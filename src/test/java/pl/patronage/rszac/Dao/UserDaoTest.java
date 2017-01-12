@@ -24,8 +24,8 @@ public class UserDaoTest {
     @Before
     public void setUp() throws Exception {
         //ta metoda będzie wywołana przed każdym testem
-        priceCatDao = new PriceCatDao();
         movieDao = new MovieDao();
+        priceCatDao = new PriceCatDao();
         actorDao = new ActorDao();
         userDao = new UserDao();
         Set<Movie> listM = new HashSet<>();
@@ -39,9 +39,9 @@ public class UserDaoTest {
         list.add(a1);
         list.add(a2);
 
-        m1 = new Movie(31, "Movie A", priceCatDao.getCategoryById(1));
-        m2 = new Movie(32, "Movie B", priceCatDao.getCategoryById(2));
-        m3 = new Movie(33, "Movie C", priceCatDao.getCategoryById(3), list);
+        m1 = new Movie(31, "Movie A", 1);
+        m2 = new Movie(32, "Movie B", 2);
+        m3 = new Movie(33, "Movie C", 3, list);
 
         m2.setRented(true);
         m3.setRented(true);
@@ -114,30 +114,30 @@ public class UserDaoTest {
         listIdMovies.add(32);
         listIdMovies.add(33);
 
-        Movie m4 = new Movie(34, "Movie A2", priceCatDao.getCategoryById(1));
-        Movie m5 = new Movie(35, "Movie B2", priceCatDao.getCategoryById(2));
+        Movie m4 = new Movie(34, "Movie A2", 1);
+        Movie m5 = new Movie(35, "Movie B2", 2);
         movieDao.insertMovie(m4);
         movieDao.insertMovie(m5);
 
-        m5 = new Movie(36, "Movie B2", priceCatDao.getCategoryById(2));
+        m5 = new Movie(36, "Movie B2", 2);
         movieDao.insertMovie(m5);
-        m5 = new Movie(37, "Movie B2", priceCatDao.getCategoryById(2));
+        m5 = new Movie(37, "Movie B2", 2);
         movieDao.insertMovie(m5);
-        m5 = new Movie(38, "Movie B2", priceCatDao.getCategoryById(2));
+        m5 = new Movie(38, "Movie B2", 2);
         movieDao.insertMovie(m5);
-        m5 = new Movie(39, "Movie B2", priceCatDao.getCategoryById(2));
+        m5 = new Movie(39, "Movie B2", 2);
         movieDao.insertMovie(m5);
-        m5 = new Movie(40, "Movie B2", priceCatDao.getCategoryById(2));
+        m5 = new Movie(40, "Movie B2", 2);
         movieDao.insertMovie(m5);
-        m5 = new Movie(41, "Movie B2", priceCatDao.getCategoryById(2));
+        m5 = new Movie(41, "Movie B2", 2);
         movieDao.insertMovie(m5);
-        m5 = new Movie(42, "Movie B2", priceCatDao.getCategoryById(2));
+        m5 = new Movie(42, "Movie B2", 2);
         movieDao.insertMovie(m5);
-        m5 = new Movie(43, "Movie B2", priceCatDao.getCategoryById(2));
+        m5 = new Movie(43, "Movie B2", 2);
         movieDao.insertMovie(m5);
-        m5 = new Movie(44, "Movie B2", priceCatDao.getCategoryById(2));
+        m5 = new Movie(44, "Movie B2", 2);
         movieDao.insertMovie(m5);
-        m5 = new Movie(45, "Movie B2", priceCatDao.getCategoryById(3));
+        m5 = new Movie(45, "Movie B2", 3);
         movieDao.insertMovie(m5);
 
         //for this test set all prices equally
@@ -154,7 +154,7 @@ public class UserDaoTest {
         listIdMovies.remove(58);
         //without discount and freemovie
         Assert.assertTrue(userDao.rentMovie(u1.getId(), listIdMovies));
-        System.out.println("Count of rented movieDao: " + u1.getRentedMovies().size() + "\nUser balance: " + u1.getBalance());
+        //System.out.println("Count of rented movieDao: " + u1.getRentedMovies().size() + "\nUser balance: " + u1.getBalance());
         this.returnAllMovies(movieDao.getAllMovies(), u1);
 
         u1.setBalance(BigDecimal.ZERO);
@@ -162,7 +162,7 @@ public class UserDaoTest {
         listIdMovies.remove(33);
         listIdMovies.add(34);
         Assert.assertTrue(userDao.rentMovie(u1.getId(), listIdMovies));
-        System.out.println("Count of rented movieDao: " + u1.getRentedMovies().size() + "\nUser balance(discount): " + u1.getBalance());
+        //System.out.println("Count of rented movieDao: " + u1.getRentedMovies().size() + "\nUser balance(discount): " + u1.getBalance());
         this.returnAllMovies(movieDao.getAllMovies(), u1);
 
         u1.setBalance(BigDecimal.ZERO);
@@ -171,7 +171,7 @@ public class UserDaoTest {
         listIdMovies.add(35);
         listIdMovies.add(45);
         Assert.assertTrue(userDao.rentMovie(u1.getId(), listIdMovies));
-        System.out.println("Count of rented movieDao: " + u1.getRentedMovies().size() + "\nUser balance(free movie): " + u1.getBalance());
+        //System.out.println("Count of rented movieDao: " + u1.getRentedMovies().size() + "\nUser balance(free movie): " + u1.getBalance());
         this.returnAllMovies(movieDao.getAllMovies(), u1);
 
         u1.setBalance(BigDecimal.ZERO);
@@ -180,7 +180,7 @@ public class UserDaoTest {
         //with freemovie and discount
         listIdMovies.add(34);
         Assert.assertTrue(userDao.rentMovie(u1.getId(), listIdMovies));
-        System.out.println("Count of rented movieDao: " + u1.getRentedMovies().size() + "\nUser balance(free movie and discount): " + u1.getBalance());
+        //System.out.println("Count of rented movieDao: " + u1.getRentedMovies().size() + "\nUser balance(free movie and discount): " + u1.getBalance());
         this.returnAllMovies(movieDao.getAllMovies(), u1);
 
         u1.setBalance(BigDecimal.ZERO);
@@ -222,15 +222,15 @@ public class UserDaoTest {
     @Test
     public void pay() throws Exception {
         u1.setBalance(BigDecimal.valueOf(100));
-//        System.out.println("User balance: " + u1.getBalance());
+//        //System.out.println("User balance: " + u1.getBalance());
         Assert.assertFalse(userDao.pay(u1.getId(), 101));
-//        System.out.println("User balance: " + u1.getBalance());
+//        //System.out.println("User balance: " + u1.getBalance());
         Assert.assertTrue(userDao.pay(u1.getId(), 99));
-//        System.out.println("User balance: " + u1.getBalance());
+//        //System.out.println("User balance: " + u1.getBalance());
         Assert.assertFalse(userDao.pay(u1.getId(), 2));
-//        System.out.println("User balance: " + u1.getBalance());
+//        //System.out.println("User balance: " + u1.getBalance());
         Assert.assertTrue(userDao.pay(u1.getId(), 1));
-//        System.out.println("User balance: " + u1.getBalance());
+//        //System.out.println("User balance: " + u1.getBalance());
 
     }
 }

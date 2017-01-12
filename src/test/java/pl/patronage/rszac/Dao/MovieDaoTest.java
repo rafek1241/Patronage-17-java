@@ -34,9 +34,9 @@ public class MovieDaoTest {
         a3 = new Actor(3, "Konstanty", "Galczynski");
         list.add(a1);
         list.add(a2);
-        a = new Movie(1, "Movie A", priceCatDao.getCategoryById(1));
-        b = new Movie(2, "Movie B", priceCatDao.getCategoryById(2));
-        c = new Movie(3, "Movie C", priceCatDao.getCategoryById(3), list);
+        a = new Movie(1, "Movie A", 1);
+        b = new Movie(2, "Movie B", 2);
+        c = new Movie(3, "Movie C", 3, list);
     }
 
 

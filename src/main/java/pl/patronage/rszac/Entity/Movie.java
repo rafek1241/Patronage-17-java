@@ -1,40 +1,45 @@
 package pl.patronage.rszac.entity;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import pl.patronage.rszac.dao.PriceCatDao;
+
 import java.util.LinkedHashSet;
 import java.util.Set;
-
 
 public class Movie {
     private int id;
     private String name;
     private Set<Actor> actors;
-    private PriceCategory category;
-    private boolean rented = false;
+    private int category;
+    private boolean rented;
+    @Autowired
+    private static PriceCatDao priceCatDao = new PriceCatDao();
 
     //Define non arg constructor otherwise error 400:Bad request to POST and PUT actions
     public Movie() {
     }
 
-    public Movie(int id, String name, PriceCategory CatId, Set<Actor> list) {
+    public Movie(int id, String name, int CatId, Set<Actor> list) {
         this.id = id;
         this.name = name;
-
+        this.rented = false;
         this.actors = list;
         this.category = CatId;
     }
 
-    public Movie(int id, String name, PriceCategory CatId) {
+    public Movie(int id, String name, int CatId) {
         this.id = id;
         this.name = name;
+        this.rented = false;
         this.category = CatId;
         this.actors = new LinkedHashSet<>();
     }
 
     public PriceCategory getCategory() {
-        return category;
+        return priceCatDao.getCategoryById(category);
     }
 
-    public void setCategory(PriceCategory category) {
+    public void setCategory(int category) {
         this.category = category;
     }
 

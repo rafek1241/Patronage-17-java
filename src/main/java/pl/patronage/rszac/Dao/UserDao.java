@@ -12,9 +12,9 @@ import java.util.*;
 public class UserDao {
     private static Map<Integer, User> listUsers = new HashMap<>();
     @Autowired
-    MovieDao movieDao;
+    MovieDao movieDao = new MovieDao();
     @Autowired
-    PriceCatDao priceCatDao;
+    PriceCatDao priceCatDao = new PriceCatDao();
 
 
     public Collection<User> getAllUsers() {
@@ -50,11 +50,12 @@ public class UserDao {
         double discountvalue = 0.75;
         Set<Movie> movs = new HashSet<>();
         moviesId.forEach(integer -> movs.add(movieDao.getMovieById(integer)));
-
-        if (movs.stream().filter(movie -> movie == null || movie.isRented()).findFirst().isPresent()) {
+        if (movs.stream().anyMatch(movie -> movie == null)) {
             return false;
         }
-
+        if (movs.stream().filter(movie -> movie.isRented()).findFirst().isPresent()) {
+            return false;
+        }
         for (Integer id : moviesId) {
             Movie mov = movieDao.getMovieById(id);
             if (mov.getCategory().getId() == 1)
