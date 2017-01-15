@@ -50,20 +50,20 @@ public class Movie {
 
         Movie movie = (Movie) o;
 
-        if (getId() != movie.getId()) return false;
-        if (isRented() != movie.isRented()) return false;
-        if (getName() != null ? !getName().equals(movie.getName()) : movie.getName() != null) return false;
-        if (getActors() != null ? !getActors().equals(movie.getActors()) : movie.getActors() != null) return false;
-        return getCategory() != null ? getCategory().equals(movie.getCategory()) : movie.getCategory() == null;
+        if (id != movie.id) return false;
+        if (category != movie.category) return false;
+        if (rented != movie.rented) return false;
+        if (!name.equals(movie.name)) return false;
+        return actors != null ? actors.equals(movie.actors) : movie.actors == null;
     }
 
     @Override
     public int hashCode() {
-        int result = getId();
-        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
-        result = 31 * result + (getActors() != null ? getActors().hashCode() : 0);
-        result = 31 * result + (getCategory() != null ? getCategory().hashCode() : 0);
-        result = 31 * result + (isRented() ? 1 : 0);
+        int result = id;
+        result = 31 * result + name.hashCode();
+        result = 31 * result + (actors != null ? actors.hashCode() : 0);
+        result = 31 * result + category;
+        result = 31 * result + (rented ? 1 : 0);
         return result;
     }
 

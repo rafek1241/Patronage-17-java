@@ -32,8 +32,8 @@ public class MovieController {
         return this.movieService.getMoviesByPriceCategory(id);
     }
 
-    @RequestMapping(value = "/{idM}/addActor/{idA}", method = RequestMethod.GET)
-    public void setActorToMovieById(@PathVariable("idA") int IdAct, @PathVariable("idM") int IdMovie) {
+    @RequestMapping(value = "/{idM}/addActor", method = RequestMethod.POST, consumes = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
+    public void setActorToMovieById(@RequestBody int IdAct, @PathVariable("idM") int IdMovie) {
         this.movieService.setActorToMovieById(IdAct, IdMovie);
     }
 

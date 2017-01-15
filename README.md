@@ -40,6 +40,7 @@ This is an application for rent movies. We can make a list of movies and create 
 ###Actors
 
 ####GET
+
 `curl http://localhost:8080/actors`
 
 >Get list of actors
@@ -49,16 +50,19 @@ This is an application for rent movies. We can make a list of movies and create 
 >Get actor with id `1`
 
 ####POST
+
 `curl -H "Content-Type: application/json" -X POST -d '{"id":"1","name":"xyz","surname":"xyz"}' http://localhost:8080/actors`
 
 >Insert actor with id `"id":"1"`
 
 ####PUT
+
 `curl -H "Content-Type: application/json" -X PUT -d '{"id":"1","name":"xyz","surname":"xyz"}' http://localhost:8080/actors`
 
 >Update actor with id `"id":"1"`
 
 ####DELETE
+
 `curl -v -X DELETE http://localhost:8080/actors/1`
 
 >Delete actor with id `1`
@@ -66,6 +70,7 @@ This is an application for rent movies. We can make a list of movies and create 
 ###Movies
 
 ####GET
+
 `curl http://localhost:8080/movies`
 
 >Get list of movies
@@ -73,10 +78,6 @@ This is an application for rent movies. We can make a list of movies and create 
 `curl http://localhost:8080/movies/1`
 
 >Get movie with id `1`
-
-`curl http://localhost:8080/movies/1/addActor/2`
-
->Insert to movie with id `1` actor with id `2`
 
 `curl http://localhost:8080/movies/price/1`
 
@@ -87,18 +88,27 @@ This is an application for rent movies. We can make a list of movies and create 
 >Get list of movies that aren't rented
 
 ####POST
+
+`curl -H "Content-Type: application/json" -X POST -d '2' http://localhost:8080/movies/1/addActor`
+
+>Insert Actor with id `2` to movie with id `1`
+
 `curl -H "Content-Type: application/json" -X POST -d '[{"id":"1","name":"xyz","surname":"xyz"}]' http://localhost:8080/movies/1/addActors`
 
 >Insert Actors to movie with id `1`
 
 `curl -H "Content-Type: application/json" -X POST -d '{"id":"111","name":"xyz","category":"2",[{"id":"1","name":"xyz","surname":"xyz"}]}' http://localhost:8080/movies`
+
 >Insert movie with id `"id":"111"`
+
 ####PUT
+
 `curl -H "Content-Type: application/json" -X POST -d '{"id":"5","name":"xyz","category":"2",[{"id":"1","name":"xyz","surname":"xyz"}]}' http://localhost:8080/movies`
 
 >Update movie with id `"id":"5"`
 
 ####DELETE
+
 `curl -v -X DELETE http://localhost:8080/movies/1`
 
 >Delete movie with id `1`
@@ -106,6 +116,7 @@ This is an application for rent movies. We can make a list of movies and create 
 ###Users
 
 ####GET
+
 `curl http://localhost:8080/users`
 
 >Get list of users
@@ -115,16 +126,21 @@ This is an application for rent movies. We can make a list of movies and create 
 >Get list of rented movies from user with id `1`
 
 ####POST
+
 `curl -H "Content-Type: application/json" -X POST -d '{"id": 1,"login": "test1","password": "test2","name": "test3","surname": "test4","rentedMovies": []}' http://localhost:8080/users/`
+
 >Create user
 
 `curl -H "Content-Type: application/json" -X POST -d '[1,2,3]' http://localhost:8080/users/1/rent`
+
 >Rent movie
 
 `curl -H "Content-Type: application/json" -X POST -d '50.05' http://localhost:8080/users/1/pay`
+
 >Pay user
 
-####DELETE
+####DELET
+E
 `curl -H "Content-Type: application/json" -X DELETE -d '[1,2,3]' http://localhost:8080/users/1/rent`
 
 >Return movie
