@@ -139,8 +139,7 @@ This is an application for rent movies. We can make a list of movies and create 
 
 >Pay user
 
-####DELET
-E
+####DELETE
 `curl -H "Content-Type: application/json" -X DELETE -d '[1,2,3]' http://localhost:8080/users/1/rent`
 
 >Return movie
