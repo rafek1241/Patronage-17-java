@@ -44,23 +44,26 @@ public class User {
         User user = (User) o;
 
         if (id != user.id) return false;
+        if ((user.balance.doubleValue() - balance.doubleValue()) != 0) return false;
         if (login != null ? !login.equals(user.login) : user.login != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
         if (name != null ? !name.equals(user.name) : user.name != null) return false;
         if (surname != null ? !surname.equals(user.surname) : user.surname != null) return false;
-        if (rentedMovies != null ? !rentedMovies.equals(user.rentedMovies) : user.rentedMovies != null) return false;
-        return balance != null ? balance.equals(user.balance) : user.balance == null;
+        return rentedMovies != null ? rentedMovies.equals(user.rentedMovies) : user.rentedMovies == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id;
-        result = 31 * result + (login != null ? login.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (surname != null ? surname.hashCode() : 0);
-        result = 31 * result + (rentedMovies != null ? rentedMovies.hashCode() : 0);
-        result = 31 * result + (balance != null ? balance.hashCode() : 0);
+        int result;
+        long temp;
+        result = id;
+        result = 31 * result + login.hashCode();
+        result = 31 * result + password.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + surname.hashCode();
+        result = 31 * result + rentedMovies.hashCode();
+        temp = Double.doubleToLongBits(balance.doubleValue());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
 
